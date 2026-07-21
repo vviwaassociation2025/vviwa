@@ -106,6 +106,44 @@ export default function HomePage() {
     return () => clearInterval(timer);
   }, [slides.length]);
 
+  const leaders = [
+    {
+      name: "DR.S.SUBRAMANI",
+      designation: "President, VVIWA",
+      company: "Tavron Engineers India Pvt.Ltd",
+      image: "/chairman_1.jpeg"
+    },
+    {
+      name: "MR.MANOHARAN",
+      designation: "Vice President, VVIWA",
+      company: "Thirurani Logistics",
+      image: "/chairman_2.jpeg"
+    },
+    {
+      name: "MR.DAMODHARAN",
+      designation: "Treasurer, VVIWA",
+      company: "VVIWA",
+      image: "/chairman_3.jpeg"
+    },
+    {
+      name: "MR.RIZWAN",
+      designation: "Secretary, VVIWA",
+      company: "HRF Infra",
+      image: "/chairman_4.jpeg"
+    }
+  ];
+
+  const [activeLeader, setActiveLeader] = useState(0);
+  const [isLeaderPaused, setIsLeaderPaused] = useState(false);
+
+  useEffect(() => {
+    if (isLeaderPaused) return;
+    const timer = setInterval(() => {
+      setActiveLeader((prev) => (prev + 1) % leaders.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isLeaderPaused, leaders.length]);
+
 
   // Mobile Menu State
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -216,7 +254,7 @@ export default function HomePage() {
               Vision & Mission
             </a>
             <a href="#pillars" className="hover:text-secondary transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-secondary hover:after:w-full after:transition-all">
-              Pillars
+              Leadership
             </a>
             <a href="#initiatives" className="hover:text-secondary transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-secondary hover:after:w-full after:transition-all">
               Services
@@ -263,7 +301,7 @@ export default function HomePage() {
               Vision & Mission
             </a>
             <a href="#pillars" onClick={() => setMobileMenuOpen(false)} className="block py-2 px-3 rounded hover:bg-slate-100 hover:text-secondary">
-              Pillars
+              Leadership
             </a>
             <a href="#initiatives" onClick={() => setMobileMenuOpen(false)} className="block py-2 px-3 rounded hover:bg-slate-100 hover:text-secondary">
               Services
@@ -513,7 +551,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Core Pillars / Slogans Section (Replicating bottom banner of the image) */}
+      {/* 6. Executive Committee / Leadership Section */}
       <section id="pillars" className="py-16 md:py-20 bg-primary-navy text-white relative overflow-hidden">
         {/* Background texture */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-primary-dark)_20%,_transparent_70%)] opacity-80" />
@@ -521,58 +559,88 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <span className="text-xs font-bold tracking-widest text-accent uppercase">
-              STRATEGIC FOUNDATIONS
+              VVIWA LEADERSHIP
             </span>
             <h2 className="text-3xl font-extrabold mt-1">
-              The Three Core Pillars of VVIWA
+              Executive Committee
             </h2>
             <div className="h-0.5 bg-accent w-16 mx-auto mt-3" />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Pillar 1 */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300 group flex flex-col justify-between items-center text-center">
-              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:scale-110 transition duration-300">
-                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-white uppercase tracking-wider mb-3">
-                Strong Industry, Stronger Community, Sustainable Future
-              </h3>
-              <p className="text-sm text-slate-300 leading-relaxed font-light mt-2">
-                Advocating industrial development that directly aids community welfare and maintains structural safety.
-              </p>
+          {/* Carousel View */}
+          <div 
+            className="relative bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 hover:bg-white/10 transition-colors duration-300 shadow-xl overflow-hidden max-w-2xl mx-auto"
+            onMouseEnter={() => setIsLeaderPaused(true)}
+            onMouseLeave={() => setIsLeaderPaused(false)}
+          >
+            {/* Slide Container */}
+            <div className="relative min-h-[340px] md:min-h-[320px] flex items-center justify-center">
+              {leaders.map((leader, index) => (
+                <div
+                  key={index}
+                  className={`w-full text-center transition-all duration-700 ease-in-out flex flex-col items-center ${
+                    index === activeLeader 
+                      ? "opacity-100 scale-100 translate-x-0 relative z-10" 
+                      : "opacity-0 scale-95 pointer-events-none absolute inset-0 z-0"
+                  }`}
+                >
+                  {/* Leader Image */}
+                  <div className="w-40 h-40 md:w-44 md:h-44 rounded-full border-4 border-accent shadow-lg shadow-accent/20 overflow-hidden bg-slate-800 relative group-hover:scale-105 transition-transform duration-300">
+                    <img 
+                      src={leader.image} 
+                      alt={leader.name} 
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+
+                  {/* Leader Stack: Name & Designation */}
+                  <div className="mt-6 flex flex-col items-center">
+                    <h3 className="text-xl md:text-2xl font-extrabold tracking-wide text-white">
+                      {leader.name}
+                    </h3>
+                    <span className="mt-2 inline-block px-3 py-1 bg-accent/15 border border-accent/30 rounded-full text-xs md:text-sm font-bold tracking-wider text-accent uppercase">
+                      {leader.designation}
+                    </span>
+                    <p className="mt-2 text-sm text-slate-300 font-light tracking-wide italic">
+                      {leader.company}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {/* Pillar 2 */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300 group flex flex-col justify-between items-center text-center">
-              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:scale-110 transition duration-300">
-                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-white uppercase tracking-wider mb-3">
-                Together We Grow
-              </h3>
-              <p className="text-sm text-slate-300 leading-relaxed font-light mt-2">
-                Fostering an inclusive network where small businesses and multi-national corporations grow collaboratively.
-              </p>
-            </div>
+            {/* Left/Right Navigation Arrows */}
+            <button
+              onClick={() => setActiveLeader((prev) => (prev - 1 + leaders.length) % leaders.length)}
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-accent hover:border-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent z-20 cursor-pointer shadow-lg"
+              aria-label="Previous Leader"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setActiveLeader((prev) => (prev + 1) % leaders.length)}
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-accent hover:border-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent z-20 cursor-pointer shadow-lg"
+              aria-label="Next Leader"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
 
-            {/* Pillar 3 */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition duration-300 group flex flex-col justify-between items-center text-center">
-              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:scale-110 transition duration-300">
-                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-white uppercase tracking-wider mb-3">
-                Sustainable Today, Stronger Tomorrow
-              </h3>
-              <p className="text-sm text-slate-300 leading-relaxed font-light mt-2">
-                Pioneering eco-friendly initiatives and standardizing modern environment management across all factory floors.
-              </p>
+            {/* Dot Indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2.5 z-20">
+              {leaders.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveLeader(i)}
+                  className={`w-3 h-3 rounded-full border border-white/30 transition-all duration-300 cursor-pointer ${
+                    i === activeLeader ? "bg-accent w-6 border-accent" : "bg-transparent hover:bg-white/20"
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -829,7 +897,7 @@ export default function HomePage() {
                 <li><a href="#hero" className="hover:text-accent transition">Home Page</a></li>
                 <li><a href="#about" className="hover:text-accent transition">Who We Are</a></li>
                 <li><a href="#vision-mission" className="hover:text-accent transition">Vision & Objectives</a></li>
-                <li><a href="#pillars" className="hover:text-accent transition">Our 3 Core Pillars</a></li>
+                <li><a href="#pillars" className="hover:text-accent transition">Executive Committee</a></li>
                 <li><a href="#initiatives" className="hover:text-accent transition">Welfare Services</a></li>
               </ul>
             </div>
