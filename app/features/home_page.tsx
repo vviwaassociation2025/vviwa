@@ -61,6 +61,16 @@ function SustainabilityIcon() {
     </svg>
   );
 }
+const socialPlatforms = [
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/share/14tbHYTmRuK/",
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/vviwa_2025?igsh=MXd5NnhldDdkY21nMA%3D%3D&utm_source=qr",
+  },
+];
 
 export default function HomePage() {
   // Hero Carousel State
@@ -92,9 +102,10 @@ export default function HomePage() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
+    }, 3000);
     return () => clearInterval(timer);
   }, [slides.length]);
+
 
   // Mobile Menu State
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -161,7 +172,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-50 text-text-dark flex flex-col">
       {/* 1. Top Bar (Inspired by reference styles) */}
-     {/*  <div className="bg-primary text-white text-xs py-2 px-4 border-b border-white/10 hidden md:block">
+      {/*  <div className="bg-primary text-white text-xs py-2 px-4 border-b border-white/10 hidden md:block">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5">
@@ -273,14 +284,13 @@ export default function HomePage() {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-              index === activeSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-            } ${slide.bgClass}`}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === activeSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+              } ${slide.bgClass}`}
           >
             {/* Mesh Background Effects */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_var(--color-secondary)_0%,_transparent_50%)] opacity-35" />
             <div className="absolute inset-0 bg-repeat bg-[linear-gradient(to_right,_rgba(255,255,255,0.05)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.05)_1px,_transparent_1px)] bg-[size:4rem_4rem]" />
-            
+
             <div className="absolute inset-0 flex items-center">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div className="max-w-3xl animate-fade-in">
@@ -288,19 +298,19 @@ export default function HomePage() {
                     <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
                     {slide.badge}
                   </span>
-                  
+
                   <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight md:leading-none">
                     {slide.title}
                   </h2>
-                  
+
                   <p className="mt-4 text-xs sm:text-sm font-bold tracking-widest text-accent uppercase">
                     {slide.subtitle}
                   </p>
-                  
+
                   <p className="mt-6 text-base sm:text-lg text-slate-200 font-light leading-relaxed max-w-2xl">
                     {slide.description}
                   </p>
-                  
+
                   <div className="mt-8 flex flex-wrap gap-4">
                     {/* <a
                       href="#membership"
@@ -322,18 +332,17 @@ export default function HomePage() {
         ))}
 
         {/* Carousel indicators */}
-        {/* <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => setActiveSlide(i)}
-              className={`w-3.5 h-3.5 rounded-full border border-white/50 transition-all ${
-                i === activeSlide ? "bg-white w-8 border-white" : "bg-transparent hover:bg-white/20"
-              }`}
+              className={`w-3.5 h-3.5 rounded-full border border-white/50 transition-all ${i === activeSlide ? "bg-white w-8 border-white" : "bg-transparent hover:bg-white/20"
+                }`}
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}
-        </div> */}
+        </div>
       </section>
 
       {/* 4. Welcome & About Section (Inspired by Tavron layout) */}
@@ -349,21 +358,21 @@ export default function HomePage() {
                 Vichoor Vellivoyal Industries Welfare Association (VVIWA)
               </h2>
               <div className="h-1 bg-secondary w-20 mt-4 mb-6 rounded-full" />
-              
+
               <p className="text-base text-text-muted leading-relaxed font-light">
-                Established as the unified voice for industrial growth and community welfare in North Chennai, 
-                VVIWA acts as a bridging catalyst. We represent hundreds of large, medium, and small scale enterprises 
+                Established as the unified voice for industrial growth and community welfare in North Chennai,
+                VVIWA acts as a bridging catalyst. We represent hundreds of large, medium, and small scale enterprises
                 operating within the Vichoor and Vellivoyal industrial zones.
               </p>
-              
+
               <p className="mt-4 text-base text-text-muted leading-relaxed font-light">
-                Our objective is simple yet profound: **Together for Industrial Growth and Community Welfare**. 
-                We coordinate with government institutions, implement infrastructure upgrades, ensure clean environmental practices, 
+                Our objective is simple yet profound: **Together for Industrial Growth and Community Welfare**.
+                We coordinate with government institutions, implement infrastructure upgrades, ensure clean environmental practices,
                 and launch skill development workshops to create local jobs and push economic development in Tamil Nadu.
               </p>
 
               <blockquote className="mt-8 border-l-4 border-primary bg-brand-light/70 p-4 rounded-r-xl italic text-primary-navy font-medium text-sm">
-                "We represent a collaborative vision where businesses flourish and local communities progress hand in hand, 
+                "We represent a collaborative vision where businesses flourish and local communities progress hand in hand,
                 laying the groundwork for North Chennai's most competitive industrial corridor."
               </blockquote>
             </div>
@@ -396,7 +405,7 @@ export default function HomePage() {
                 {/* Background graphic elements */}
                 <div className="absolute -right-16 -top-16 w-32 h-32 rounded-full bg-white/5" />
                 <div className="absolute -left-16 -bottom-16 w-32 h-32 rounded-full bg-white/5" />
-                
+
                 {/* Top Target Circle */}
                 <div className="relative z-10 flex flex-col items-center">
                   <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center border-2 border-white/20 mb-4 hover:rotate-12 transition-transform duration-300">
@@ -489,7 +498,7 @@ export default function HomePage() {
                       <div className="w-10 h-10 rounded-full border border-slate-300 bg-white flex items-center justify-center shrink-0 shadow-sm">
                         {item.icon}
                       </div>
-                      
+
                       {/* Number & Text */}
                       <div className="flex gap-2 pt-1.5 text-sm sm:text-base text-text-dark font-medium">
                         <span className="font-extrabold text-primary shrink-0">{item.num}.</span>
@@ -508,7 +517,7 @@ export default function HomePage() {
       <section id="pillars" className="py-16 md:py-20 bg-primary-navy text-white relative overflow-hidden">
         {/* Background texture */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-primary-dark)_20%,_transparent_70%)] opacity-80" />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <span className="text-xs font-bold tracking-widest text-accent uppercase">
@@ -664,7 +673,7 @@ export default function HomePage() {
       </section>
 
       {/* 8. Interactive Membership Application Form */}
-     
+
 
       {/* 9. Contact Us Section */}
       <section id="contact" className="py-16 md:py-24 bg-white">
@@ -692,9 +701,9 @@ export default function HomePage() {
                 <div>
                   <h4 className="font-bold text-primary-navy text-sm uppercase tracking-wide">Registered Office Address</h4>
                   <p className="text-sm text-text-muted mt-2 leading-relaxed font-light">
-                    VVIWA Association Building, Block A,<br />
-                    Vichoor Industrial Estate, Ponneri High Road,<br />
-                    Vichoor, Chennai - 600103,<br />
+                    VVIWA Association Building,<br />
+                    No. 38/42, Arulmurugan nagar, Vichoor,<br />
+                    Manali New Town, Chennai - 600103,<br />
                     Tamil Nadu, India
                   </p>
                 </div>
@@ -709,8 +718,8 @@ export default function HomePage() {
                 <div>
                   <h4 className="font-bold text-primary-navy text-sm uppercase tracking-wide">Phone & Hotlines</h4>
                   <p className="text-sm text-text-muted mt-2 font-light">
-                    Landline: +91 44 2659 1234<br />
-                    Mobile Helpline: +91 98400 98765 / +91 94440 12345
+                    {/* Landline: +91 44 2659 1234<br /> */}
+                    Mobile Helpline: +91 94440 26415 / +91 80560 91909
                   </p>
                 </div>
               </div>
@@ -724,9 +733,8 @@ export default function HomePage() {
                 <div>
                   <h4 className="font-bold text-primary-navy text-sm uppercase tracking-wide">Email Communications</h4>
                   <p className="text-sm text-text-muted mt-2 font-light">
-                    General Inquiries: info@vviwa.org<br />
-                    Secretary Desk: secretary@vviwa.org<br />
-                    Membership Support: members@vviwa.org
+                    Support : vviwaassociation2025@gmail.com<br />
+                    {/* Secretary Desk: secretary@vviwa.org<br /> */}
                   </p>
                 </div>
               </div>
@@ -742,7 +750,7 @@ export default function HomePage() {
                   <div className="absolute top-1/2 left-1/4 w-40 h-2 bg-slate-300/80 rounded-full transform -rotate-12" />
                   <div className="absolute top-1/3 left-1/2 w-48 h-3 bg-slate-300/80 rounded-full transform rotate-45" />
                   <div className="absolute top-1/4 right-1/4 w-32 h-2.5 bg-slate-300/80 rounded-full transform -rotate-45" />
-                  
+
                   {/* Highlighted Pin Area */}
                   <div className="relative flex flex-col items-center animate-bounce">
                     <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg border-2 border-white text-white">
@@ -761,7 +769,7 @@ export default function HomePage() {
                     Sunday: Closed
                   </p>
                   <a
-                    href="https://maps.google.com/?q=Vichoor+Chennai"
+                    href="https://maps.app.goo.gl/FGXhVHLKzPXzo3tp9?g_st=iwb"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-secondary font-bold hover:underline inline-flex items-center gap-1 mt-2.5"
@@ -782,6 +790,7 @@ export default function HomePage() {
       <footer className="bg-primary-dark text-white border-t border-white/5 py-12 md:py-16 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"> */}
             {/* Column 1: Info */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -794,15 +803,18 @@ export default function HomePage() {
                 Vichoor Vellivoyal Industries Welfare Association is dedicated to helping businesses grow and enhancing local communities in North Chennai since establishment.
               </p>
               <div className="flex items-center gap-3 pt-2">
-                {/* Social icons */}
-                {["facebook", "twitter", "linkedin"].map((soc) => (
+                {socialPlatforms.map((social) => (
                   <a
-                    key={soc}
-                    href={`https://${soc}.com`}
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:bg-secondary hover:border-secondary transition"
-                    aria-label={`Visit our ${soc}`}
+                    aria-label={`Visit our ${social.name}`}
                   >
-                    <span className="text-[10px] uppercase font-bold text-slate-200">{soc[0]}</span>
+                    <span className="text-[10px] uppercase font-bold text-slate-200">
+                      {social.name[0]}
+                    </span>
                   </a>
                 ))}
               </div>
@@ -823,7 +835,7 @@ export default function HomePage() {
             </div>
 
             {/* Column 3: Initiatives */}
-            <div>
+            {/* <div>
               <h4 className="text-sm font-bold uppercase tracking-wider text-accent border-b border-white/10 pb-2 mb-4">
                 Key Initiatives
               </h4>
@@ -834,7 +846,7 @@ export default function HomePage() {
                 <li><a href="#initiatives" className="hover:text-accent transition">Vocational Training</a></li>
                 <li><a href="#membership" className="hover:text-accent transition">Membership Registrations</a></li>
               </ul>
-            </div>
+            </div> */}
 
             {/* Column 4: Contact Info */}
             <div>
@@ -842,13 +854,14 @@ export default function HomePage() {
                 Secretariat
               </h4>
               <p className="text-xs text-slate-300 leading-relaxed font-light mb-3">
-                Block A, Vichoor Industrial Estate,<br />
-                Ponneri High Road, Vichoor,<br />
-                Chennai - 600103, India
+                VVIWA Association Building,<br />
+                No. 38/42, Arulmurugan nagar, Vichoor,<br />
+                Manali New Town, Chennai - 600103,<br />
+                Tamil Nadu, India
               </p>
               <p className="text-xs text-slate-300 font-light">
-                <strong>Phone:</strong> +91 44 2659 1234<br />
-                <strong>Email:</strong> info@vviwa.org
+                <strong>Phone:</strong> +91 94440 26415 / +91 80560 91909<br />
+                <strong>Email:</strong> vviwaassociation2025@gmail.com
               </p>
             </div>
           </div>
