@@ -72,6 +72,54 @@ const socialPlatforms = [
   },
 ];
 
+const bylawsPages = [
+  {
+    title: "Eco-Development & Employment",
+    items: [
+      { id: "a", text: "To promote and develop Eco-friendly environment, mutual good-will and co-operation, cultural, literary, intellectual consciousness, economic co-operation and such other activities as are deemed to be of common interest to the members irrespective of caste, cadre, creed, religion, age and sex." },
+      { id: "b", text: "To promote friendly relationship between employer and employee." },
+      { id: "c", text: "To provide employments to the poor, downtrodden marginal community people, particularly to the people of Vichoor, Vellivoyal villagers and also nearby villagers from Manali and Manali New Town." },
+      { id: "d", text: "To co-coordinate with Government officials, Local Panchayat and bring in roads, ensure proper sanitation, sewage facilities, proper street light maintenance and installation of street lights and to provide proper drinking water to the Association members." },
+      { id: "e", text: "To ensure that there should not be any political Parties interference on Business or trade related activities." },
+      { id: "f", text: "To ensure that there should not be any interference of fringe and antisocial elements in the business administration or any threatening in any regard." }
+    ]
+  },
+  {
+    title: "Legal Support & Community Welfare",
+    items: [
+      { id: "g", text: "To give legal awareness regarding the statutory compliances to the Association members i.e., PF, ESI, GST, Income Tax, etc.," },
+      { id: "h", text: "To give proper legal support to the Association members." },
+      { id: "i", text: "To ensure necessary arrangements to the villagers at the time of flood or any natural calamities." },
+      { id: "j", text: "To establish, manage and improve facilities like library, medical clinic and ambulance to the Association members and to the people of villagers." },
+      { id: "k", text: "To provide assistance to the members in the matter of disputes with neighbors and others as and when necessity arises." },
+      { id: "l", text: "To conduct exhibition expo or other related exhibition expo to promote industrial manufactories." }
+    ]
+  },
+  {
+    title: "Government Liaison & Internal Administration",
+    items: [
+      { id: "m", text: "To meet the Government authorities to promote and develop the industrial manufacturing and also co-ordinate to get the Government subsidies and beneficial for eligible Companies." },
+      { id: "n", text: "To provide guidance for pollution norms for Association members and also help them to comply government norms." },
+      { id: "o", text: "In the event of any office bearer laying down office for whatever reasons, the executive committee can co-opt any member consider suitable for the office for the remaining period of the tenure or till election re-held." },
+      { id: "p", text: "To ensure and promote the primary aim and objectives of the Association." },
+      { id: "q", text: "May decide to expel a member of executive committee or a member of the association in case anyone is convicted or any criminal offence or prove insanity or any members action in contravention to the By-laws." },
+      { id: "r", text: "Executive committee shall have power to appeal and raise funds and fulfil the formalities incumbent upon it." }
+    ]
+  },
+  {
+    title: "Funding, Operations & Meetings",
+    items: [
+      { id: "s", text: "To accept from Government, Non-Government, local bodies, organization and individuals grants, donations, subscriptions or any property movable/immovable for furtherance of the objectives of the Association." },
+      { id: "t", text: "Executive committee may invite to their meetings not more than two specialists/experts who may be non-members of the association whose presence with the deliberations is considered useful." },
+      { id: "u", text: "To retain, appoint, promote and dismiss any employees for managing and functioning of the Association and to regulate their terms and conditions of employment including remuneration." },
+      { id: "v", text: "To make the rules and by-laws and get approval." },
+      { id: "w", text: "Any vacancy that may arise in the Executive Committee may be filled up by the remaining committee members." },
+      { id: "x", text: "Any member of the executive committee being absent for three successive meetings without proper cause shall cease to be a member of the executive committee. However he/she is eligible to be re-elected." },
+      { id: "y", text: "The executive committee is to meet every month or earlier if there is any business to consider and Secretary shall convene such meetings 1/3rd shall quorum." }
+    ]
+  }
+];
+
 export default function HomePage() {
   // Hero Carousel State
   const [activeSlide, setActiveSlide] = useState(0);
@@ -147,6 +195,17 @@ export default function HomePage() {
 
   // Mobile Menu State
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // By-Laws Carousel State
+  const [activeBylawPage, setActiveBylawPage] = useState(0);
+
+  const prevBylawPage = () => {
+    setActiveBylawPage((prev) => (prev === 0 ? bylawsPages.length - 1 : prev - 1));
+  };
+
+  const nextBylawPage = () => {
+    setActiveBylawPage((prev) => (prev === bylawsPages.length - 1 ? 0 : prev + 1));
+  };
 
   // Membership Form State
   const [formData, setFormData] = useState({
@@ -253,6 +312,9 @@ export default function HomePage() {
             <a href="#vision-mission" className="hover:text-secondary transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-secondary hover:after:w-full after:transition-all">
               Vision & Mission
             </a>
+            <a href="#by-laws" className="hover:text-secondary transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-secondary hover:after:w-full after:transition-all">
+              By-Laws
+            </a>
             <a href="#pillars" className="hover:text-secondary transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-secondary hover:after:w-full after:transition-all">
               Leadership
             </a>
@@ -299,6 +361,9 @@ export default function HomePage() {
             </a>
             <a href="#vision-mission" onClick={() => setMobileMenuOpen(false)} className="block py-2 px-3 rounded hover:bg-slate-100 hover:text-secondary">
               Vision & Mission
+            </a>
+            <a href="#by-laws" onClick={() => setMobileMenuOpen(false)} className="block py-2 px-3 rounded hover:bg-slate-100 hover:text-secondary">
+              By-Laws
             </a>
             <a href="#pillars" onClick={() => setMobileMenuOpen(false)} className="block py-2 px-3 rounded hover:bg-slate-100 hover:text-secondary">
               Leadership
@@ -550,6 +615,115 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5.5. Association By-Laws Section (Horizontal Carousel) */}
+      <section id="by-laws" className="py-16 md:py-24 bg-white relative overflow-hidden">
+        {/* Background Decorative Gradient/Shapes */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-light/50 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-sky/40 rounded-full blur-3xl -z-10" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-xs font-extrabold tracking-widest text-secondary uppercase block mb-2">
+              CONSTITUTION & RULES
+            </span>
+            <h2 className="text-3xl font-extrabold text-primary-navy mt-1">
+              Association By-Laws
+            </h2>
+            <div className="h-1 bg-secondary w-16 mx-auto mt-3 rounded-full" />
+            <p className="mt-4 text-sm text-text-muted font-light leading-relaxed">
+              Vichoor Vellivoyal Industries Welfare Association (VVIWA) operates under established guidelines to promote industrial harmony, compliance, and community welfare.
+            </p>
+          </div>
+
+          {/* Carousel Viewport Container */}
+          <div className="relative bg-brand-light/30 border border-slate-200/60 rounded-3xl p-6 md:p-10 shadow-sm backdrop-blur-sm">
+            {/* Carousel Inner Track */}
+            <div className="overflow-hidden w-full relative">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translate3d(-${activeBylawPage * 100}%, 0, 0)` }}
+              >
+                {bylawsPages.map((page, pageIdx) => (
+                  <div key={pageIdx} className="w-full shrink-0 px-2 md:px-4">
+                    <div className="text-center mb-8">
+                      <span className="inline-block text-xs font-bold text-primary tracking-widest uppercase bg-brand-sky px-4 py-1.5 rounded-full border border-secondary/15">
+                        Part {pageIdx + 1} of 4: {page.title}
+                      </span>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+                      {page.items.map((item) => {
+                        const isLastItemOnPage4 = pageIdx === 3 && item.id === "y";
+                        return (
+                          <div
+                            key={item.id}
+                            className={`bg-white border border-slate-100/80 rounded-2xl p-5 hover:shadow-md hover:border-secondary/20 transition-all duration-300 flex items-start gap-4 hover:-translate-y-0.5 shadow-sm h-full ${
+                              isLastItemOnPage4 ? "lg:col-span-3 md:col-span-2 bg-gradient-to-r from-white to-brand-light/20" : ""
+                            }`}
+                          >
+                            {/* Letter Circle Indicator with Gradient */}
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary text-white font-extrabold flex items-center justify-center shrink-0 shadow-sm text-sm uppercase">
+                              {item.id}
+                            </div>
+                            <p className="text-text-dark font-medium text-[13.5px] leading-relaxed pt-0.5">
+                              {item.text}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Left & Right Navigation Arrows */}
+            <div className="absolute top-1/2 -translate-y-1/2 left-2 md:-left-5 z-20">
+              <button
+                onClick={prevBylawPage}
+                className="p-2.5 md:p-3.5 rounded-full border border-slate-200 bg-white text-primary hover:text-secondary hover:bg-brand-light hover:border-primary/20 hover:scale-105 transition-all shadow-md cursor-pointer flex items-center justify-center focus:outline-none"
+                aria-label="Previous by-laws page"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            </div>
+            <div className="absolute top-1/2 -translate-y-1/2 right-2 md:-right-5 z-20">
+              <button
+                onClick={nextBylawPage}
+                className="p-2.5 md:p-3.5 rounded-full border border-slate-200 bg-white text-primary hover:text-secondary hover:bg-brand-light hover:border-primary/20 hover:scale-105 transition-all shadow-md cursor-pointer flex items-center justify-center focus:outline-none"
+                aria-label="Next by-laws page"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Indicators / Progress Dot Panel */}
+          <div className="mt-8 flex flex-col items-center gap-3">
+            <div className="flex justify-center gap-2.5">
+              {bylawsPages.map((page, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveBylawPage(i)}
+                  className={`transition-all duration-300 h-2.5 rounded-full cursor-pointer focus:outline-none ${
+                    i === activeBylawPage ? "bg-primary w-8 shadow-sm" : "bg-slate-300 w-2.5 hover:bg-slate-400"
+                  }`}
+                  title={page.title}
+                  aria-label={`Go to by-laws page ${i + 1}`}
+                />
+              ))}
+            </div>
+            <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">
+              {bylawsPages[activeBylawPage].title}
+            </span>
           </div>
         </div>
       </section>
@@ -900,6 +1074,7 @@ export default function HomePage() {
                 <li><a href="#hero" className="hover:text-accent transition">Home Page</a></li>
                 <li><a href="#about" className="hover:text-accent transition">Who We Are</a></li>
                 <li><a href="#vision-mission" className="hover:text-accent transition">Vision & Objectives</a></li>
+                <li><a href="#by-laws" className="hover:text-accent transition">Association By-Laws</a></li>
                 <li><a href="#pillars" className="hover:text-accent transition">Executive Committee</a></li>
                 <li><a href="#initiatives" className="hover:text-accent transition">Welfare Services</a></li>
               </ul>
@@ -909,15 +1084,15 @@ export default function HomePage() {
             {/* <div>
               <h4 className="text-sm font-bold uppercase tracking-wider text-accent border-b border-white/10 pb-2 mb-4">
                 Key Initiatives
-              </h4>
-              <ul className="space-y-2 text-xs font-light text-slate-300">
+              {/* </h4> */}
+              {/* <ul className="space-y-2 text-xs font-light text-slate-300">
                 <li><a href="#initiatives" className="hover:text-accent transition">Infrastructure Upgrades</a></li>
                 <li><a href="#initiatives" className="hover:text-accent transition">MSME Subsidy Aid</a></li>
                 <li><a href="#initiatives" className="hover:text-accent transition">Pollution Board Liaison</a></li>
                 <li><a href="#initiatives" className="hover:text-accent transition">Vocational Training</a></li>
                 <li><a href="#membership" className="hover:text-accent transition">Membership Registrations</a></li>
-              </ul>
-            </div> */}
+              </ul> */}
+           
 
             {/* Column 4: Contact Info */}
             <div>
@@ -935,7 +1110,7 @@ export default function HomePage() {
                 <strong>Email:</strong> vviwaassociation2025@gmail.com
               </p>
             </div>
-          </div>
+             </div> 
 
           <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-light text-slate-400">
             <p>
