@@ -37,8 +37,14 @@ export function LogoHorizontal({ className = "", iconSize = 48, textColor = "tex
         <span className="text-[10px] font-semibold tracking-wide text-primary leading-tight uppercase mt-0.5">
           Vichoor Vellivoyal Industries
         </span>
+        {/* <span className="text-[10px] font-semibold tracking-wide text-primary leading-tight uppercase mt-0.5">
+          Owners Welfare Association
+        </span> */}
         <span className="text-[9px] font-medium tracking-normal text-text-muted leading-none uppercase">
-          Welfare Association
+         Owners Welfare Association
+        </span>
+        <span className="text-[8px] pt-1 font-medium tracking-normal text-text-muted leading-none uppercase">
+          Reg.No: 90/2025
         </span>
       </div>
     </div>
@@ -56,7 +62,7 @@ export function LogoFullBanner({ className = "" }: { className?: string }) {
             VVIWA
           </h1>
           <h2 className="text-lg md:text-xl font-bold tracking-wide text-primary-navy uppercase mt-2">
-            Vichoor Vellivoyal Industries
+            Vichoor Vellivoyal Industries Owners
           </h2>
           <div className="flex items-center justify-center md:justify-start my-2">
             <span className="h-0.5 bg-primary-navy w-12" />

@@ -393,8 +393,11 @@ export default function HomePage() {
                 WELFARE ASSOCIATION IN CHENNAI
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-primary-navy tracking-tight leading-tight">
-                Vichoor Vellivoyal Industries Welfare Association (VVIWA)
+                Vichoor Vellivoyal Industries Owners Welfare Association (VVIWA)
               </h2>
+               <span className="text-[1xl] pt-1 font-medium tracking-normal text-text-muted leading-none uppercase">
+                Reg.No: 90/2025
+        </span>
               <div className="h-1 bg-secondary w-20 mt-4 mb-6 rounded-full" />
 
               <p className="text-base text-text-muted leading-relaxed font-light">
@@ -923,8 +926,8 @@ export default function HomePage() {
               </h4>
               <p className="text-xs text-slate-300 leading-relaxed font-light mb-3">
                 VVIWA Association Building,<br />
-                No. 38/42, Arulmurugan nagar, Vichoor,<br />
-                Manali New Town, Chennai - 600103,<br />
+                No. 7/4, F-1, R K Flat, 4th Street, Kumaran Colony,<br />
+                Vadapalani, Chennai-600034,<br />
                 Tamil Nadu, India
               </p>
               <p className="text-xs text-slate-300 font-light">
